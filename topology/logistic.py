@@ -20,7 +20,7 @@ class LogisticModel(object):
     def __init__(self, init_learning_rate, decay_steps, decay_rate):
         global_step = tf.Variable(0)
 
-        learning_rate = tf.train.exponential_decay(init_learning_rate, global_step, decay_steps, 0.96, staircase=True)
+        learning_rate = tf.train.exponential_decay(init_learning_rate, global_step, decay_steps, decay_rate, staircase=True)
 
         self.e = tf.placeholder(tf.float32, [None, embedding_size])
         self.y = tf.placeholder(tf.int32, [None, 1])

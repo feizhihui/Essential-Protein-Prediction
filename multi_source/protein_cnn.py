@@ -33,7 +33,8 @@ class CnnModel(object):
         }
         global_step = tf.Variable(0)
 
-        learning_rate = tf.train.exponential_decay(init_learning_rate, global_step, decay_steps, 0.96, staircase=True)
+        learning_rate = tf.train.exponential_decay(init_learning_rate, global_step, decay_steps, decay_rate,
+                                                   staircase=True)
 
         # define placehold
         self.x = tf.placeholder(tf.float32, [None, channel_size, time_steps])
