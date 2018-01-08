@@ -33,10 +33,10 @@ def validataion():
     logits_pred = []
     for i in range(0, len(loader.test_Y), step_size):
         batch_X = loader.test_X[i:i + step_size]
-        batch_E = loader.test_E[i:i + step_size]
+        batch_C = loader.test_E[i:i + step_size]
         batch_Y = loader.test_Y[i:i + step_size]
         output, y_logit = sess.run([model.prediction_cnn, model.logits_pred],
-                                   feed_dict={model.x: batch_X, model.e: batch_E, model.y: batch_Y,
+                                   feed_dict={model.x: batch_X, model.e: batch_C, model.y: batch_Y,
                                               model.dropout_keep_prob: 1.0})
         outputs.append(output)
         logits_pred.append(y_logit)
