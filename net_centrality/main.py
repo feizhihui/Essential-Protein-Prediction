@@ -6,6 +6,7 @@ import numpy as np
 import tensorflow as tf
 from protein_cnn import CnnModel
 from sklearn import metrics
+import pickle
 
 # LD_LIBRARY_PATH	/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
@@ -51,6 +52,7 @@ def validataion():
     report = metrics.classification_report(loader.test_Y, y_pred,
                                            target_names=['Trivial', 'Essential'])
     print(report)
+    return y_pred, loader.test_Y
 
 
 with tf.Session() as sess:
@@ -77,4 +79,6 @@ with tf.Session() as sess:
                 fpr, tpr, threshold = metrics.roc_curve(batch_Y, y_logits)
                 print("auc_socre %.6f" % metrics.auc(fpr, tpr))
 
-        validataion()
+        c = validataion()
+    with open('../plot_cache/load_centrality.pkl', mode='wb') as file:
+        pickle.dump(c, file)
