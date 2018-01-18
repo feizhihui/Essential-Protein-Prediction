@@ -23,8 +23,6 @@ legends = ['Doc2Vec',
            'Harmonic Centrality',
            'Load Centrality']
 
-mean_tpr = 0
-mean_fpr = np.linspace(0, 1, 100)
 plt.title('Precision/Recall Curve')  # give plot a title
 plt.xlabel('Recall')  # make axis labels
 plt.ylabel('Precision')

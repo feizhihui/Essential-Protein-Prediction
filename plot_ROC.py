@@ -23,8 +23,7 @@ legends = ['Doc2Vec',
            'Harmonic Centrality',
            'Load Centrality']
 
-mean_tpr = 0
-mean_fpr = np.linspace(0, 1, 100)
+
 plt.title('ROC')
 
 plt.xlabel('False Positive Rate')
