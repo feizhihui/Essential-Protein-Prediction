@@ -34,6 +34,6 @@ for i, filename in enumerate(image_list):
         plt.plot(recall, precision, 'k--', color=colors[i], label='%s AUPR:%.3f' % (legends[i], aupr), lw=2)
 
 plt.legend(loc="lower right", fontsize='small')  # after plt.plot
-plt.show()
 
 plt.savefig('PR.jpg')
+plt.show()
