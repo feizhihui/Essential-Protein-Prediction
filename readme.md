@@ -8,7 +8,7 @@ The code involves two models in deep learning implemented by tensorflow-1.1.0:
 
 ---
 
-![ROC](https://github.com/feizhihui/Essential-Protein-Prediction/blob/master/ROC.jpg =100x20)
+![ROC](https://github.com/feizhihui/Essential-Protein-Prediction/blob/master/ROC.jpg)
 
-![Precision/Recall Curve](https://github.com/feizhihui/Essential-Protein-Prediction/blob/master/PR.jpg =100x20)
+![Precision/Recall Curve](https://github.com/feizhihui/Essential-Protein-Prediction/blob/master/PR.jpg)
 
