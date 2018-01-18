@@ -7,7 +7,7 @@ import numpy as np
 
 time_steps = 12
 channel_size = 3
-embedding_size = 1
+embedding_size = 6
 embedding_fn_size = 256
 filter_num = 64
 

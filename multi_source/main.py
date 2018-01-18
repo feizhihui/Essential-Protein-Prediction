@@ -52,7 +52,7 @@ def validataion():
     report = metrics.classification_report(loader.test_Y, y_pred,
                                            target_names=['Trivial', 'Essential'])
     print(report)
-    return y_pred, loader.test_Y
+    return logits_pred, loader.test_Y
 
 
 with tf.Session() as sess:
