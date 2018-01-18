@@ -24,7 +24,6 @@ legends = ['Doc2Vec',
            'Load Centrality']
 
 plt.title('ROC')
-
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 for i, filename in enumerate(image_list):
@@ -35,6 +34,5 @@ for i, filename in enumerate(image_list):
         plt.plot(fpr, tpr, 'k--', color=colors[i], label='%s AUC:%.3f' % (legends[i], roc_auc), lw=2)
 
 plt.legend(loc="lower right", fontsize='medium')  # after plt.plot
-
 plt.savefig('ROC.jpg')
 plt.show()
