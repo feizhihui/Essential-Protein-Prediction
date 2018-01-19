@@ -31,9 +31,9 @@ for i, filename in enumerate(image_list):
         y_score, y_label = pickle.load(file)
         precision, recall, _ = precision_recall_curve(y_label, y_score)
         aupr = auc(recall, precision)
-        plt.plot(recall, precision, 'k--', color=colors[i], label='%s AUPR:%.3f' % (legends[i], aupr), lw=2)
-
-plt.legend(loc="lower right", fontsize='small')  # after plt.plot
+        # plt.plot(recall, precision, 'k--', color=colors[i], label='%s AUPR:%.3f' % (legends[i], aupr), lw=2)
+        plt.plot(recall, precision, 'k--', color=colors[i], label='%s' % (legends[i]), lw=2)
+plt.legend(loc="upper right", fontsize='small')  # after plt.plot
 
 plt.savefig('PR.jpg')
 plt.show()
