@@ -1,7 +1,7 @@
 # encoding=utf-8
 import os
 
-import dataloader2
+import dataloader
 import numpy as np
 import tensorflow as tf
 from protein_cnn import CnnModel
@@ -11,7 +11,7 @@ import pickle
 # LD_LIBRARY_PATH	/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
-loader = dataloader2.DataMaster()
+loader = dataloader.DataMaster()
 
 batch_size = 32
 # batch_size = 32
@@ -21,7 +21,7 @@ epoch_num_cnn = 40
 
 # keep_pro = 0.9
 keep_pro = 0.95
-init_learning_rate = 0.001
+init_learning_rate = 0.005
 
 # decay_rate = 0.95
 decay_rate = 0.96
@@ -85,5 +85,5 @@ with tf.Session() as sess:
                 print("auc_socre %.6f" % metrics.auc(fpr, tpr))
 
         c = validataion()
-    with open('../plot_cache/multi_source.pkl', mode='wb') as file:
+    with open('../plot_cache/multi_source_1_2.pkl', mode='wb') as file:
         pickle.dump(c, file)

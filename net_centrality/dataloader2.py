@@ -7,7 +7,7 @@ train_eval_rate = 0.8
 class DataMaster(object):
     def __init__(self):
         self.datasets = np.load('./data/protein_matrix.npy')
-        self.dataembs = np.load('./data/protein_emb.npy')
+        self.dataembs = np.load('./data/protein_centrality.npy')[:, 5:6]
         self.datalabels = np.load('./data/protein_label.npy')
 
         self.trainsets = self.datasets[
@@ -28,11 +28,19 @@ class DataMaster(object):
         self.test_size = len(self.datalabels)
 
     def shuffle(self):
-        mark = list(range(self.training_size // 2))
+        mark = list(range(int(np.sum(self.neg_idx))))
         np.random.shuffle(mark)
-        self.train_X = np.concatenate([self.trainsets[self.pos_idx], self.trainsets[self.neg_idx][mark]])
-        self.train_E = np.concatenate([self.trainembs[self.pos_idx], self.trainembs[self.neg_idx][mark]])
-        self.train_Y = np.concatenate([self.trainlabels[self.pos_idx], self.trainlabels[self.neg_idx][mark]])
+
+        print(len(self.trainsets))
+        print(len(mark))
+        print(len(self.trainsets[self.neg_idx]))  #
+
+        self.train_X = np.concatenate(
+            [self.trainsets[self.pos_idx], self.trainsets[self.neg_idx][mark][:self.training_size // 2]])
+        self.train_E = np.concatenate(
+            [self.trainembs[self.pos_idx], self.trainembs[self.neg_idx][mark][:self.training_size // 2]])
+        self.train_Y = np.concatenate(
+            [self.trainlabels[self.pos_idx], self.trainlabels[self.neg_idx][mark][:self.training_size // 2]])
         mark = list(range(self.training_size))
         np.random.shuffle(mark)
         self.train_X = self.train_X[mark]

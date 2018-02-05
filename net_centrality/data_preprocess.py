@@ -63,13 +63,13 @@ with open('../data/GSE3431_T36.txt') as file:
             protein_emb.append(emb_dict[protein_name])
             id = int(biogrid_dict[protein_name])
             centrality_list = []
-            centrality_list.append(degree_centrality[id])
-            centrality_list.append(closeness_centrality[id])
-            centrality_list.append(eigenvector_centrality[id])
-            centrality_list.append(betweenness_centrality[id])
-            centrality_list.append(harmonic_centrality[id])
-            centrality_list.append(load_centrality[id])
-            centrality_list.append(subgraph_centrality[id])
+            centrality_list.append(degree_centrality[id])  # 0
+            centrality_list.append(closeness_centrality[id])  # 1
+            centrality_list.append(eigenvector_centrality[id])  # 2
+            centrality_list.append(betweenness_centrality[id])  # 3
+            centrality_list.append(harmonic_centrality[id])  # 4
+            centrality_list.append(load_centrality[id])  # 5
+            centrality_list.append(subgraph_centrality[id])  # delete
             protein_centrality.append(centrality_list)
             print(centrality_list)
             if protein_name in key_protein_set:

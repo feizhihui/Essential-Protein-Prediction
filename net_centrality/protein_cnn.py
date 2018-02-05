@@ -7,11 +7,15 @@ import numpy as np
 
 time_steps = 12
 channel_size = 3
-embedding_size = 6
-embedding_fn_size = 256
-filter_num = 64
+embedding_size = 1
+# embedding_fn_size = 256
+embedding_fn_size = 312
+
+# filter_num = 64
+filter_num = 8
 
 # fixed size 3
+# filter_sizes = [1, 3, 5]
 filter_sizes = [1, 3, 5]
 threshold = 0.6
 

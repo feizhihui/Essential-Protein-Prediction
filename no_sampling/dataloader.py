@@ -2,9 +2,14 @@
 import numpy as np
 
 train_eval_rate = 0.8
+rate = 1
 
 
 class DataMaster(object):
+    '''
+    down-sampling with rate
+    '''
+
     def __init__(self):
         self.datasets = np.load('./data/protein_matrix.npy')
         self.dataembs = np.load('./data/protein_emb.npy')
@@ -15,9 +20,9 @@ class DataMaster(object):
         self.trainembs = self.dataembs[:int(train_eval_rate * len(self.dataembs))]
         self.trainlabels = self.datalabels[:int(train_eval_rate * len(self.datalabels))]
 
-        print("training data numbers(%d%%): %d" % (train_eval_rate * 100, len(self.datalabels)))
+        print("training data numbers(%d%%): %d" % (train_eval_rate * 100, len(self.trainlabels)))
         self.pos_idx = (self.trainlabels == 1).reshape(-1)
-        self.neg_idx = (self.trainlabels == 0).reshape(-1)
+        self.neg_idx = (self.trainlabels == 0).reshape(-1)  # [:rate * len(self.pos_idx)]
         self.training_size = len(self.trainlabels[self.pos_idx]) * 2
         print("positive data numbers", str(self.training_size // 2))
 
@@ -28,7 +33,8 @@ class DataMaster(object):
         self.test_size = len(self.datalabels)
 
     def shuffle(self):
-        mark = list(range(self.training_size // 2))
+        rate = 2
+        mark = list(range(int(rate * self.training_size) // 2))
         np.random.shuffle(mark)
         self.train_X = np.concatenate([self.trainsets[self.pos_idx], self.trainsets[self.neg_idx][mark]])
         self.train_E = np.concatenate([self.trainembs[self.pos_idx], self.trainembs[self.neg_idx][mark]])
@@ -41,4 +47,4 @@ class DataMaster(object):
 
 
 if __name__ == '__main__':
-    DataMaster()
+    DataMaster().shuffle()
