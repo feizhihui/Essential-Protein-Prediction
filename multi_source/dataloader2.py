@@ -20,7 +20,7 @@ class DataMaster(object):
         self.trainembs = self.dataembs[:int(train_eval_rate * len(self.dataembs))]
         self.trainlabels = self.datalabels[:int(train_eval_rate * len(self.datalabels))]
 
-        print("training data numbers(%d%%): %d" % (train_eval_rate * 100, len(self.datalabels)))
+        print("training data numbers(%d%%): %d" % (train_eval_rate * 100, len(self.trainsets)))
         self.pos_idx = (self.trainlabels == 1).reshape(-1)
         self.neg_idx = (self.trainlabels == 0).reshape(-1)  # [:rate * len(self.pos_idx)]
         self.training_size = len(self.trainlabels[self.pos_idx]) * 2
